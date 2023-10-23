@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private Button prevButton;
     private Button nextButton;
-    private int[] imageIds = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4, R.drawable.image5};
+    private int[] imageIds = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4, R.drawable.image5, R.drawable.image6};
     private int currentIndex = 0;
 
     @Override
@@ -30,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (currentIndex > 0) {
                     currentIndex--;
-                    updateImage();
+                } else {
+                    // Nếu đang ở ảnh đầu tiên, chuyển đến ảnh cuối cùng trong danh sách
+                    currentIndex = imageIds.length - 1;
                 }
+                updateImage();
             }
         });
 
@@ -40,8 +43,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (currentIndex < imageIds.length - 1) {
                     currentIndex++;
-                    updateImage();
+                } else {
+                    // Nếu đang ở ảnh cuối cùng, chuyển đến ảnh đầu tiên trong danh sách
+                    currentIndex = 0;
                 }
+                updateImage();
             }
         });
     }
